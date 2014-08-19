@@ -22,5 +22,8 @@
   "homepage": "https://github.com/rtc-io/rtc-sdpclean",
   "devDependencies": {
     "tape": "^2.14.0"
+  },
+  "dependencies": {
+    "rtc-validator": "^1.1.0"
   }
 }
