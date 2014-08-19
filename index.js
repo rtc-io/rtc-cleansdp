@@ -1,6 +1,8 @@
 var validators = [
-  [ /^a\=candidate/, require('rtc-validator/candidate') ]
+  [ /^(a\=candidate.*)$/, require('rtc-validator/candidate') ]
 ];
+
+var reSdpLineBreak = /(\r?\n|\\r\\n)/;
 
 /**
   # rtc-sdpclean
@@ -20,5 +22,38 @@ var validators = [
 
 **/
 module.exports = function(input, opts) {
+  var lineBreak = detectLineBreak(input);
+  var lines = input.split(lineBreak);
+  var collector = (opts || {}).collector;
 
+  // filter out invalid lines
+  lines = lines.filter(function(line) {
+    // iterate through the validators and use the one that matches
+    var validator = validators.reduce(function(memo, data, idx) {
+      return typeof memo != 'undefined' ? memo : (data[0].exec(line) && {
+        line: line.replace(data[0], '$1'),
+        fn: data[1]
+      });
+    }, undefined);
+
+    // if we have a validator, ensure we have no errors
+    var errors = validator ? validator.fn(validator.line) : [];
+
+    // if we have errors and an error collector, then add to the collector
+    if (collector) {
+      errors.forEach(function(err) {
+        collector.push(err);
+      });
+    }
+
+    return errors.length === 0;
+  });
+
+  return lines.join(lineBreak);
 };
+
+function detectLineBreak(input) {
+  var match = reSdpLineBreak.exec(input);
+
+  return match && match[0];
+}
