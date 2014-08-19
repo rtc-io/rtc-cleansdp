@@ -24,6 +24,6 @@
     "tape": "^2.14.0"
   },
   "dependencies": {
-    "rtc-validator": "^1.1.0"
+    "rtc-validator": "^1.2.0"
   }
 }
