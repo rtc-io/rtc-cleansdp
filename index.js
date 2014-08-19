@@ -16,10 +16,6 @@ var reSdpLineBreak = /(\r?\n|\\r\\n)/;
 
   - invalid ICE candidates
 
-  ## Usage
-
-  << examples/clean.js
-
 **/
 module.exports = function(input, opts) {
   var lineBreak = detectLineBreak(input);
