@@ -1,6 +1,6 @@
 var validators = [
   [ /^a\=candidate/, require('rtc-validator/candidate') ]
-};
+];
 
 /**
   # rtc-sdpclean
