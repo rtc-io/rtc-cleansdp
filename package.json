@@ -1,6 +1,6 @@
 {
   "name": "rtc-sdpclean",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple module that uses rtc-validator to ensure invalid lines in SDP are removed",
   "main": "index.js",
   "stability": "unstable",
