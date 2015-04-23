@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A simple module that uses rtc-validator to ensure invalid lines in SDP are removed",
   "main": "index.js",
+  "stability": "unstable",
   "scripts": {
     "test": "node test/all.js",
     "gendocs": "gendocs > README.md"
